@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1038251992980",
+    "project_id": "pixels-co",
+    "storage_bucket": "pixels-co.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038251992980:android:bfc87fbf534899bd751181",
+        "android_client_info": {
+          "package_name": "com.example.pixels_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038251992980-5en2e6v7d9h3g0ggh8h91049g2erhr2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqwuOYQYOwGaLdETPKr_PBK5I4tBmmQQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038251992980-5en2e6v7d9h3g0ggh8h91049g2erhr2f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1038251992980-arhrm83bo3ka004lgc0nlfbivjsia8u0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pixelsAdmin"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038251992980:android:dd38bc158d9c89aa751181",
+        "android_client_info": {
+          "package_name": "com.example.pixels_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038251992980-5en2e6v7d9h3g0ggh8h91049g2erhr2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqwuOYQYOwGaLdETPKr_PBK5I4tBmmQQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038251992980-5en2e6v7d9h3g0ggh8h91049g2erhr2f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1038251992980-arhrm83bo3ka004lgc0nlfbivjsia8u0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pixelsAdmin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
