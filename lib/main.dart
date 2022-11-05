@@ -38,9 +38,9 @@ class MyApp extends StatelessWidget {
               title: "Pixcles",
               theme: ThemeData(
                 appBarTheme: const AppBarTheme(
-                  backgroundColor: blackcolor,
+                  backgroundColor: Color.fromARGB(255, 36, 44, 59),
                 ),
-                scaffoldBackgroundColor: blackcolor,
+                scaffoldBackgroundColor: const Color.fromARGB(255, 36, 44, 59),
                 primarySwatch: Colors.blue,
                 textTheme: TextTheme(
                   bodyText1: GoogleFonts.montserrat(

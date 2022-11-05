@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixels_user/view/home/widget/ontap_popular.dart';
+import 'package:pixels_user/view/widget/newMorphism_black.dart';
 
-
+import '../../colors/color.dart';
 import '../../widget/boxdecoration_widget.dart';
 
 class PopularWidget extends StatelessWidget {
@@ -26,29 +27,43 @@ class PopularWidget extends StatelessWidget {
           (index) {
             return GestureDetector(
               onTap: () => Get.to(const OnTapPopular()),
-              child: BoxDecorationWidget(
+              child: NewMorphismBlackWidget(
                 height: 100,
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Text(
-                      'Canon EOS 30 D',
-                      style: TextStyle(fontSize: 14),
+                width: 100,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            radius: 56,
+                            backgroundImage:
+                                AssetImage('assest/Images/png_camera.png'),
+                          ),
+                          Text(
+                            'Canon EOS 30 D',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "16000",
+                            style: TextStyle(
+                                fontSize: 13, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          )
+                        ],
+                      ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "16000",
-                      style:
-                          TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    )
-                  ],
+                  ),
                 ),
               ),
             );
@@ -57,6 +72,32 @@ class PopularWidget extends StatelessWidget {
       ),
     );
   }
+
+  BoxDecoration glassMorphism() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(
+          width: 0.2,
+          color: Color.fromARGB(255, 56, 159, 244).withOpacity(0.9)),
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomCenter,
+        colors: [whitecolor.withOpacity(0.10), whitecolor.withOpacity(0.10)],
+      ),
+    );
+  }
+}
+
+BoxDecoration glassMorphism() {
+  return BoxDecoration(
+    borderRadius: BorderRadius.circular(10),
+    border: Border.all(width: 0.2, color: whitecolor),
+    gradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomCenter,
+      colors: [whitecolor.withOpacity(0.10), whitecolor.withOpacity(0.10)],
+    ),
+  );
 }
 
 

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixels_user/view/buying_Items/buying_items.dart';
-import 'package:pixels_user/view/widget/boxdecoration_widget.dart';
+import 'package:pixels_user/view/widget/buttonContainer_widget.dart';
+import 'package:pixels_user/view/widget/newMorphism_black.dart';
 
 class UserCartScreen extends StatelessWidget {
   const UserCartScreen({super.key});
@@ -16,7 +17,12 @@ class UserCartScreen extends StatelessWidget {
         title: const Text("My Cart"),
       ),
       body: SafeArea(
-          child: BoxDecorationWidget(
+          child: ListView(
+        children: [
+          SizedBox(
+            height: 5,
+          ),
+          NewMorphismBlackWidget(
               height: 200.h,
               width: double.infinity.w,
               child: Column(
@@ -44,8 +50,8 @@ class UserCartScreen extends StatelessWidget {
                                   style: TextStyle(color: Colors.grey)),
                               Text(
                                 "30000 ",
-                                style: TextStyle(
-                                    color: Colors.green, fontSize: 16),
+                                style:
+                                    TextStyle(color: Colors.blue, fontSize: 16),
                               ),
                             ],
                           ),
@@ -58,7 +64,9 @@ class UserCartScreen extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {},
-                        child: BoxDecorationWidget(
+                        child: ButtonContainerWidget(
+                          curving: 30,
+                          colorindex: 1,
                           height: 50.h,
                           width: 130.w,
                           child: Row(
@@ -80,7 +88,9 @@ class UserCartScreen extends StatelessWidget {
                         onTap: () {
                           Get.to(BuyingOrdersScreen());
                         },
-                        child: BoxDecorationWidget(
+                        child: ButtonContainerWidget(
+                          colorindex: 0,
+                          curving: 30,
                           height: 50.h,
                           width: 130.w,
                           child: Row(
@@ -101,7 +111,9 @@ class UserCartScreen extends StatelessWidget {
                     ],
                   )
                 ],
-              ))),
+              )),
+        ],
+      )),
     );
   }
 }

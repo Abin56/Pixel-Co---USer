@@ -16,18 +16,10 @@ class ScreenHome extends StatelessWidget {
           child: ListView(
             children: [
               const AppWidget(),
+              SizedBox(
+                height: 10,
+              ),
               const TopAdWidget(),
-              // LimitedBox(
-              //   maxHeight: 200.h,
-              //   // maxWidth: double.infinity,
-              //   child: ListView(
-              //     scrollDirection: Axis.horizontal,
-              //     children: List.generate(
-              //       10,
-              //       (index) => TopAdWidget(),
-              //     ),
-              //   ),
-              // ),
               SizedBox(
                 height: 10.h,
               ),

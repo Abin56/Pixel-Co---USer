@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pixels_user/view/widget/boxdecoration_widget.dart';
+import 'package:pixels_user/view/widget/newMorphism_black.dart';
 
 class ScreenCategories extends StatelessWidget {
   const ScreenCategories({super.key});
@@ -10,6 +11,10 @@ class ScreenCategories extends StatelessWidget {
     double w = MediaQuery.of(context).size.width;
     int columnCount = 2;
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Categories"),
+        backgroundColor: Color.fromARGB(255, 36, 44, 59),
+      ),
       body: SafeArea(
         child: AnimationLimiter(
           child: GridView.count(
@@ -28,7 +33,7 @@ class ScreenCategories extends StatelessWidget {
                   duration: const Duration(milliseconds: 500),
                   columnCount: columnCount,
                   child: ScaleAnimation(
-                    duration: const Duration(milliseconds: 900),
+                    duration: const Duration(milliseconds: 700),
                     curve: Curves.fastLinearToSlowEaseIn,
                     scale: 1.8,
                     child: FadeInAnimation(
@@ -36,11 +41,15 @@ class ScreenCategories extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                              onTap: () async {},
-                              child: BoxDecorationWidget(
-                                  height: 200,
-                                  width: double.infinity,
-                                  child: const Center(child: Text('Categories')))),
+                            onTap: () async {},
+                            child: NewMorphismBlackWidget(
+                              height: 200,
+                              width: double.infinity,
+                              child: const Center(
+                                child: Text('Categories'),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),

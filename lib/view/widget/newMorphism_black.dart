@@ -28,9 +28,9 @@ class NewMorphismBlackWidget extends StatelessWidget {
               blurRadius: 5,
               inset: true),
           BoxShadow(
-              color: Color.fromARGB(164, 118, 130, 150),
-              offset: Offset(-9, -9),
-              blurRadius: 5,
+              color: Color.fromARGB(193, 123, 136, 156),
+              offset: Offset(-3, -3),
+              blurRadius: 2,
               inset: true)
         ],
       ),

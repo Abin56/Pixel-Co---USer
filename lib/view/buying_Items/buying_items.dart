@@ -1,6 +1,8 @@
 // ignore_for_file: sort_child_properties_last
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pixels_user/view/cart/checkout/checkout_screen.dart';
 import 'package:pixels_user/view/colors/color.dart';
 import 'package:pixels_user/view/core/const.dart';
 import 'package:pixels_user/view/widget/buttonContainer_widget.dart';
@@ -239,11 +241,13 @@ class BuyingOrdersScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     SliderButton(
-                      icon:const Icon(Icons.arrow_forward_ios_rounded),
+                      icon: const Icon(Icons.arrow_forward_ios_rounded),
                       height: 60,
                       baseColor: Colors.blue,
-                      backgroundColor:const  Color.fromARGB(255, 26, 32, 44),
-                      action: () {},
+                      backgroundColor: const Color.fromARGB(255, 26, 32, 44),
+                      action: () {
+                        Get.off(CheckOutScreen());
+                      },
                       label: const Text(
                         'Proceed to Checkout',
                         style: TextStyle(fontSize: 15),

@@ -9,7 +9,6 @@ import 'package:pixels_user/view/colors/color.dart';
 import 'package:pixels_user/view/core/const.dart';
 import 'package:pixels_user/view/loginpage/login_screen.dart';
 import 'package:pixels_user/view/profile/widget/get_bottomsheet.dart';
-
 import '../../controller/phone_otp_Bloc/auth_cubit.dart';
 import '../../controller/phone_otp_Bloc/auth_state.dart';
 
@@ -19,6 +18,7 @@ class ScreenProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       extendBody: true,
       body: Stack(
         children: [
@@ -67,30 +67,6 @@ class ScreenProfile extends StatelessWidget {
               ),
             ),
           ),
-          // Positioned(
-          //   top: 100,
-          //   right: -150,
-          //   child: Container(
-          //     height: 200,
-          //     width: 200,
-          //     decoration: BoxDecoration(
-          //       shape: BoxShape.circle,
-          //       color: Color.fromARGB(255, 154, 0, 225).withOpacity(0.7),
-          //     ),
-          //     child: BackdropFilter(
-          //       filter: ImageFilter.blur(
-          //         sigmaX: 200,
-          //         sigmaY: 200,
-          //       ),
-          //       child: Container(
-          //         height: 200,
-          //         width: 200,
-          //         color: Colors.transparent,
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
           SafeArea(
             child: ListView(
               children: [
