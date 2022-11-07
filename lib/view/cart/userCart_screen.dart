@@ -19,7 +19,7 @@ class UserCartScreen extends StatelessWidget {
       body: SafeArea(
           child: ListView(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           NewMorphismBlackWidget(
@@ -86,7 +86,7 @@ class UserCartScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(BuyingOrdersScreen());
+                          Get.to(const BuyingOrdersScreen());
                         },
                         child: ButtonContainerWidget(
                           colorindex: 0,

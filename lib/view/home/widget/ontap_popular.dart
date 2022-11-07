@@ -40,7 +40,7 @@ class OnTapPopular extends StatelessWidget {
                 ],
               ),
             ),
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 120,
               backgroundImage: AssetImage('assest/Images/png_camera.png'),
@@ -91,7 +91,7 @@ class OnTapPopular extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Get.off(UserCartScreen());
+                            Get.off(const UserCartScreen());
                           },
                           child: ButtonContainerWidget(
                             colorindex: 1,

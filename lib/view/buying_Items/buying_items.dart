@@ -246,7 +246,7 @@ class BuyingOrdersScreen extends StatelessWidget {
                       baseColor: Colors.blue,
                       backgroundColor: const Color.fromARGB(255, 26, 32, 44),
                       action: () {
-                        Get.off(CheckOutScreen());
+                        Get.off(const CheckOutScreen());
                       },
                       label: const Text(
                         'Proceed to Checkout',

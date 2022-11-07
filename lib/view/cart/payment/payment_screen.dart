@@ -15,7 +15,7 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen> {
   final _amountController = TextEditingController();
-  var _razorpay = Razorpay();
+  final _razorpay = Razorpay();
   @override
   void initState() {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
@@ -35,6 +35,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   void _handlePaymentWallet(ExternalWalletResponse response) {}
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -89,7 +90,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                   _razorpay.open(options);
                 },
-                label: Text(
+                label: const Text(
                   'Pay Amount',
                   style: TextStyle(fontSize: 20),
                 ),

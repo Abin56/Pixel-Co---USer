@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:pixels_user/view/widget/boxdecoration_widget.dart';
 import 'package:pixels_user/view/widget/newMorphism_black.dart';
 
 class ScreenCategories extends StatelessWidget {
@@ -12,8 +11,8 @@ class ScreenCategories extends StatelessWidget {
     int columnCount = 2;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Categories"),
-        backgroundColor: Color.fromARGB(255, 36, 44, 59),
+        title: const Text("Categories"),
+        backgroundColor: const Color.fromARGB(255, 36, 44, 59),
       ),
       body: SafeArea(
         child: AnimationLimiter(

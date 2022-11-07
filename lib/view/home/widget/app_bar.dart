@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixels_user/view/cart/userCart_screen.dart';
 import 'package:pixels_user/view/widget/buttonContainer_widget.dart';
-import 'package:pixels_user/view/widget/newMorphism_black.dart';
 
 import '../../colors/color.dart';
 
@@ -17,8 +16,8 @@ class AppWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Center(
-          child: const Text(
+        const Center(
+          child: Text(
             'PixelsCo.',
             style: TextStyle(fontSize: 30),
           ),

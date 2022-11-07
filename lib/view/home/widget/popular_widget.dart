@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixels_user/view/home/widget/ontap_popular.dart';
 import 'package:pixels_user/view/widget/newMorphism_black.dart';
-
 import '../../colors/color.dart';
-import '../../widget/boxdecoration_widget.dart';
 
 class PopularWidget extends StatelessWidget {
   const PopularWidget({
@@ -78,7 +76,7 @@ class PopularWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       border: Border.all(
           width: 0.2,
-          color: Color.fromARGB(255, 56, 159, 244).withOpacity(0.9)),
+          color: const Color.fromARGB(255, 56, 159, 244).withOpacity(0.9)),
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomCenter,
