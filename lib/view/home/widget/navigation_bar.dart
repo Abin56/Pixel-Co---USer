@@ -91,8 +91,8 @@ class NavigationBarContoller extends StatelessWidget {
 }
 
 var screens = [
-  const ScreenHome(),
-  const ScreenCategories(),
+  ScreenHome(),
+  ScreenCategories(),
   const UserOrdersScreen(),
   const ScreenProfile()
 ];

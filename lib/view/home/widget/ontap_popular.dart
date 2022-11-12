@@ -1,7 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pixels_user/view/cart/userCart_screen.dart';
+import 'package:pixels_user/controller/Getx/getx.dart';
+import 'package:pixels_user/controller/hive/database_hive.dart';
+import 'package:pixels_user/main.dart';
+import 'package:pixels_user/model/favourite_model.dart';
+import 'package:pixels_user/model/userCartModel.dart';
+import 'package:pixels_user/view/cart/buying_Items/buying_items.dart';
+import 'package:pixels_user/view/cart/user_cart_screen/userCart_screen.dart';
 import 'package:pixels_user/view/core/const.dart';
 import 'package:pixels_user/view/home/widget/navigation_bar.dart';
 import 'package:pixels_user/view/widget/buttonContainer_widget.dart';
@@ -9,8 +16,20 @@ import 'package:pixels_user/view/widget/newMorphism_black.dart';
 import '../../colors/color.dart';
 
 class OnTapPopular extends StatelessWidget {
-  const OnTapPopular({super.key});
+  var image;
+  var productname;
+  double price;
+  var discription;
+  var id;
 
+  OnTapPopular(
+      {required this.image,
+      required this.id,
+      required this.discription,
+      required this.price,
+      required this.productname,
+      super.key});
+  final getxController = Get.put(PixelsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +59,10 @@ class OnTapPopular extends StatelessWidget {
                 ],
               ),
             ),
-            const CircleAvatar(
-              backgroundColor: Colors.transparent,
-              radius: 120,
-              backgroundImage: AssetImage('assest/Images/png_camera.png'),
-            ),
+            CircleAvatar(
+                backgroundColor: Colors.transparent,
+                radius: 120,
+                backgroundImage: NetworkImage(image)),
             NewMorphismBlackWidget(
               height: 400.h,
               width: double.infinity,
@@ -54,12 +72,12 @@ class OnTapPopular extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Sony 200mm Zoom',
+                    Text(
+                      productname,
                       style: TextStyle(fontSize: 25),
                     ),
-                    const Text(
-                      '6000',
+                    Text(
+                      price.toString(),
                       style: TextStyle(fontSize: 20),
                     ),
                     Row(
@@ -79,8 +97,8 @@ class OnTapPopular extends StatelessWidget {
                     sizedboxH,
                     sizedboxH,
                     sizedboxH,
-                    const Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged",
+                    Text(
+                      discription,
                       style: TextStyle(fontSize: 13),
                     ),
                     SizedBox(
@@ -90,8 +108,19 @@ class OnTapPopular extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            Get.off(const UserCartScreen());
+                          onTap: () async {
+                            final addDetails = UserFavtModel(
+                                id: '',
+                                productImage: image,
+                                productName: productname,
+                                price: price,
+                                category: '',
+                                quantity: 0,
+                                discription: discription,
+                                documentId: '',
+                                available: true);
+                            await AddUserFavProductToFireBase()
+                                .addProductController(addDetails);
                           },
                           child: ButtonContainerWidget(
                             colorindex: 1,
@@ -109,15 +138,32 @@ class OnTapPopular extends StatelessWidget {
                         SizedBox(
                           width: 9.6.w,
                         ),
-                        ButtonContainerWidget(
-                          colorindex: 0,
-                          curving: 30,
-                          height: 60.h,
-                          width: 200.w,
-                          child: const Center(
-                            child: Text(
-                              'Add to bag',
-                              style: TextStyle(fontSize: 15),
+                        GestureDetector(
+                          onTap: () async {
+                            final productModel = UserCartProdutModel(
+                              userID: FirebaseAuth.instance.currentUser!.uid,
+                                id: id,
+                                productImage: image,
+                                productName: productname,
+                                price: price,
+                                category: '',
+                                quantity: 1,
+                                discription: discription,
+                                documentId: '',
+                                available: true);
+                            UserCartProductToFireBase()
+                                .addCartModelController(productModel);
+                          },
+                          child: ButtonContainerWidget(
+                            colorindex: 0,
+                            curving: 30,
+                            height: 60.h,
+                            width: 200.w,
+                            child: const Center(
+                              child: Text(
+                                'Add to bag',
+                                style: TextStyle(fontSize: 15),
+                              ),
                             ),
                           ),
                         ),

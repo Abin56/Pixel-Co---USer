@@ -1,11 +1,19 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:pixels_user/model/userCartModel.dart';
 
+import '../../main.dart';
 import '../../model/allProdut__mode.dart';
+import '../../view/cart/user_cart_screen/userCart_screen.dart';
+import '../hive/database_hive.dart';
 
 class PixelsController extends GetxController {
+  double totalAmount = 0;
+  final count = 0.obs;
+  var list = <DBUserFavourites>[].obs;
   List<Map<String, dynamic>> list1 = [];
   List<Map<String, dynamic>> categoryCollections = [];
   @override
@@ -59,5 +67,43 @@ class PixelsController extends GetxController {
     log(list.toString(), name: "calling");
     update();
     return list;
+  }
+
+  addtoHive(
+      {required String productName,
+      required String image,
+      required String id,
+      required String price}) async {
+    final addAlltoHive = DBUserFavourites(
+        productname: productName, image: image, price: price, id: id);
+
+    userDataBase.add(addAlltoHive);
+    log("Adding ....Hive>>>>>>>>>>>>>${userDataBase.toString()}");
+    update();
+  }
+
+  increMentCount(UserCartProdutModel product) async {
+    product.quantity = product.quantity + 1;
+    FirebaseFirestore.instance
+        .collection("UserCartModel")
+        .doc(product.id)
+        .set(product.toJson());
+    update(['Cart']);
+  }
+
+  decrementCount(UserCartProdutModel product) {
+    product.quantity = product.quantity - 1;
+    FirebaseFirestore.instance
+        .collection("UserCartModel")
+        .doc(product.id)
+        .set(product.toJson());
+    update(['Cart']);
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> cartModelCalling() {
+    return FirebaseFirestore.instance
+        .collection("UserCartModel")
+        .where('userID', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
   }
 }

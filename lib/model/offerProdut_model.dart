@@ -1,22 +1,22 @@
-//     final allProductModel = allProductModelFromJson(jsonString);
+//     final OfferProductModel = OfferProductModelFromJson(jsonString);
 
 // ignore_for_file: file_names
 
 import 'dart:convert';
 
-AllProductModel allProductModelFromJson(String str) =>
-    AllProductModel.fromJson(json.decode(str));
+OfferProductModel OfferProductModelFromJson(String str) =>
+    OfferProductModel.fromJson(json.decode(str));
 
-String allProductModelToJson(AllProductModel data) =>
+String OfferProductModelToJson(OfferProductModel data) =>
     json.encode(data.toJson());
 
-class AllProductModel {
-  AllProductModel({
+class OfferProductModel {
+  OfferProductModel({
     required this.id,
     required this.productImage,
     required this.productName,
     required this.price,
-    required this.category,
+    required this.offerPercentage,
     required this.quantity,
     required this.discription,
     required this.documentId,
@@ -27,19 +27,19 @@ class AllProductModel {
   String productImage;
   String productName;
   String price;
-  String category;
+  String offerPercentage;
   String quantity;
   String discription;
   String documentId;
   bool available;
 
-  factory AllProductModel.fromJson(Map<String, dynamic> json) =>
-      AllProductModel(
+  factory OfferProductModel.fromJson(Map<String, dynamic> json) =>
+      OfferProductModel(
         id: json["id"] ?? '',
         productImage: json["ProductImage"] ?? '',
         productName: json["productName"] ?? '',
         price: json["Price"] ?? "",
-        category: json["Category"] ?? "",
+        offerPercentage: json["OfferPrice"] ?? "",
         quantity: json["quantity"] ?? "",
         discription: json["discription"] ?? "",
         documentId: json["documentID"] ?? "",
@@ -51,7 +51,7 @@ class AllProductModel {
         "ProductImage": productImage,
         "productName": productName,
         "Price": price,
-        "Category": category,
+        "OfferPrice": offerPercentage,
         "quantity": quantity,
         "discription": discription,
         "documentID": documentId,

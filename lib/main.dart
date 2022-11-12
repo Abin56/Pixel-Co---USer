@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:pixels_user/controller/hive/database_hive.dart';
 
 import 'package:pixels_user/controller/phone_otp_Bloc/auth_cubit.dart';
 import 'package:pixels_user/controller/phone_otp_Bloc/auth_state.dart';
@@ -14,11 +17,19 @@ import 'package:pixels_user/view/splashscreen/splash_screen.dart';
 import 'firebase_options.dart';
 import 'view/colors/color.dart';
 
+late Box<DBUserFavourites> userDataBase;
+
 void main() async {
+  ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Hive.initFlutter();
+  if (!Hive.isAdapterRegistered(DBUserFavouritesAdapter().typeId)) {
+    Hive.registerAdapter(DBUserFavouritesAdapter());
+  }
+  userDataBase = await Hive.openBox<DBUserFavourites>('studentlist');
   runApp(const MyApp());
 }
 
