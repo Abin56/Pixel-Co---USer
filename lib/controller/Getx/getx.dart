@@ -1,19 +1,16 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:pixels_user/model/userCartModel.dart';
-
-import '../../main.dart';
 import '../../model/allProdut__mode.dart';
-import '../../view/cart/user_cart_screen/userCart_screen.dart';
-import '../hive/database_hive.dart';
 
 class PixelsController extends GetxController {
+  double checkoutPrice =0;
+  double coupenvalue = 5000;
+  double newValue = 0;
   double totalAmount = 0;
   final count = 0.obs;
-  var list = <DBUserFavourites>[].obs;
   List<Map<String, dynamic>> list1 = [];
   List<Map<String, dynamic>> categoryCollections = [];
 
@@ -60,7 +57,8 @@ class PixelsController extends GetxController {
       value.docs.forEach((element) {
         list.add(element.data());
       });
-    });
+    })
+    ;
     list1 = list;
     log(list.toString());
 
@@ -68,19 +66,6 @@ class PixelsController extends GetxController {
     log(list.toString(), name: "calling");
     update();
     return list;
-  }
-
-  addtoHive(
-      {required String productName,
-      required String image,
-      required String id,
-      required String price}) async {
-    final addAlltoHive = DBUserFavourites(
-        productname: productName, image: image, price: price, id: id);
-
-    userDataBase.add(addAlltoHive);
-    log("Adding ....Hive>>>>>>>>>>>>>${userDataBase.toString()}");
-    update();
   }
 
   increMentCount(UserCartProdutModel product) async {
@@ -117,4 +102,12 @@ class PixelsController extends GetxController {
             .map((doc) => UserCartProdutModel.fromJson(doc.data()))
             .toList());
   }
+
+  newCoupenValue() {
+    newValue = totalAmount - coupenvalue;
+
+    log(newValue.toString());
+    update();
+  }
+
 }

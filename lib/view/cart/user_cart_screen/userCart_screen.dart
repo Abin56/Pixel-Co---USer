@@ -1,18 +1,10 @@
 // ignore_for_file: file_names, must_be_immutable
-
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
-import 'package:pixels_user/controller/Getx/getx.dart';
-import 'package:pixels_user/controller/hive/database_hive.dart';
 import 'package:pixels_user/model/favourite_model.dart';
 import 'package:pixels_user/model/userCartModel.dart';
-import 'package:pixels_user/view/cart/buying_Items/buying_items.dart';
 import 'package:pixels_user/view/core/const.dart';
 import 'package:pixels_user/view/widget/buttonContainer_widget.dart';
 import 'package:pixels_user/view/widget/newMorphism_black.dart';

@@ -1,16 +1,15 @@
-// ignore_for_file: sort_child_properties_last
+// ignore_for_file: sort_child_properties_last, must_be_immutable
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixels_user/controller/Getx/getx.dart';
 import 'package:pixels_user/model/userCartModel.dart';
-import 'package:pixels_user/view/cart/checkout/checkout_screen.dart';
+import 'package:pixels_user/view/cart/buying_Items/proceed_Checkout.dart';
 import 'package:pixels_user/view/colors/color.dart';
 import 'package:pixels_user/view/core/const.dart';
 import 'package:pixels_user/view/widget/buttonContainer_widget.dart';
 import 'package:pixels_user/view/widget/newMorphism_black.dart';
-import 'package:slider_button/slider_button.dart';
 
 class BuyingOrdersScreen extends StatelessWidget {
   String id;
@@ -46,7 +45,10 @@ class BuyingOrdersScreen extends StatelessWidget {
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () => Get.back(),
+                              onTap: () {
+                                getxController.newValue = 0;
+                                Get.back();
+                              },
                               child: ButtonContainerWidget(
                                 curving: 8,
                                 colorindex: 0,
@@ -71,7 +73,7 @@ class BuyingOrdersScreen extends StatelessWidget {
                         ),
                         sizedboxH,
                         SizedBox(
-                          height: 370.h,
+                          height: 350.h,
                           child: ListView.separated(
                               itemBuilder: (context, index) {
                                 UserCartProdutModel data =
@@ -196,134 +198,7 @@ class BuyingOrdersScreen extends StatelessWidget {
                               },
                               itemCount: snapshot.data?.length ?? 0),
                         ),
-                        SizedBox(
-                          height: 400,
-                          child: Column(
-                            children: [
-                              sizedboxH,
-                              const Text(
-                                'Your cart qualifies for free shipping',
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 12),
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              NewMorphismBlackWidget(
-                                height: 80.h,
-                                width: double.infinity,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text(
-                                        'PIXELS87h',
-                                        style: TextStyle(
-                                            color: Colors.grey, fontSize: 12),
-                                      ),
-                                      ButtonContainerWidget(
-                                        curving: 10,
-                                        colorindex: 3,
-                                        height: 48.h,
-                                        width: 130.w,
-                                        child: const Center(
-                                          child: Text(
-                                            'Apply',
-                                            style: TextStyle(
-                                                color: whitecolor,
-                                                fontSize: 12),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Subtotal :',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 11),
-                                  ),
-                                  Text(
-                                    '${getxController.totalAmount} ',
-                                    style: TextStyle(
-                                        color: Colors.grey, fontSize: 12),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      'Delivery Fee',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 11),
-                                    ),
-                                    Text(
-                                      '0%',
-                                      style: TextStyle(
-                                          color: Colors.grey, fontSize: 12),
-                                    ),
-                                  ]),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              SizedBox(
-                                height: 16.h,
-                              ),
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
-                                      'Total',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 16),
-                                    ),
-                                    Text(
-                                      '${getxController.totalAmount}',
-                                      style: const TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 91, 171, 236),
-                                          fontSize: 16),
-                                    ),
-                                  ]),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              SliderButton(
-                                icon:
-                                    const Icon(Icons.arrow_forward_ios_rounded),
-                                height: 60,
-                                baseColor: Colors.blue,
-                                backgroundColor:
-                                    const Color.fromARGB(255, 26, 32, 44),
-                                action: () {
-                                  Get.off(CheckOutScreen(
-                                    totalPrice: getxController.totalAmount,
-                                  ));
-                                },
-                                label: const Text(
-                                  'Proceed to Checkout',
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                        ProceedToCheckOut(getxController: getxController)
                       ],
                     );
                   } else {
@@ -340,20 +215,3 @@ class BuyingOrdersScreen extends StatelessWidget {
     );
   }
 }
-
-// class CartListWidget extends StatelessWidget {
-//   CartListWidget({
-//     Key? key,
-//     required this.data,
-//     required this.getxController,
-//   }) : super(key: key);
-
-//   final UserCartProdutModel data;
-//   final PixelsController getxController;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return
- 
-//   }
-// }

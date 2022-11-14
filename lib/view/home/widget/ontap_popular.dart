@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixels_user/controller/Getx/getx.dart';
-import 'package:pixels_user/controller/hive/database_hive.dart';
+
 import 'package:pixels_user/main.dart';
 import 'package:pixels_user/model/favourite_model.dart';
 import 'package:pixels_user/model/userCartModel.dart';
@@ -141,7 +141,7 @@ class OnTapPopular extends StatelessWidget {
                         GestureDetector(
                           onTap: () async {
                             final productModel = UserCartProdutModel(
-                              userID: FirebaseAuth.instance.currentUser!.uid,
+                                userID: FirebaseAuth.instance.currentUser!.uid,
                                 id: id,
                                 productImage: image,
                                 productName: productname,
