@@ -16,6 +16,7 @@ class PixelsController extends GetxController {
   var list = <DBUserFavourites>[].obs;
   List<Map<String, dynamic>> list1 = [];
   List<Map<String, dynamic>> categoryCollections = [];
+
   @override
   void onInit() {
     fetchingCategory();
@@ -88,7 +89,6 @@ class PixelsController extends GetxController {
         .collection("UserCartModel")
         .doc(product.id)
         .set(product.toJson());
-    update(['Cart']);
   }
 
   decrementCount(UserCartProdutModel product) {
@@ -97,7 +97,7 @@ class PixelsController extends GetxController {
         .collection("UserCartModel")
         .doc(product.id)
         .set(product.toJson());
-    update(['Cart']);
+    totalAmount -= product.price;
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> cartModelCalling() {
@@ -105,5 +105,16 @@ class PixelsController extends GetxController {
         .collection("UserCartModel")
         .where('userID', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
+  }
+
+  Stream<List<UserCartProdutModel>> getProductStream() {
+    totalAmount = 0;
+    return FirebaseFirestore.instance
+        .collection("UserCartModel")
+        .where('userID', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => UserCartProdutModel.fromJson(doc.data()))
+            .toList());
   }
 }

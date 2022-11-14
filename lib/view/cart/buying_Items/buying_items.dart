@@ -1,8 +1,5 @@
 // ignore_for_file: sort_child_properties_last
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -35,12 +32,15 @@ class BuyingOrdersScreen extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: StreamBuilder(
-                stream: getxController.cartModelCalling(),
+                stream: getxController.getProductStream(),
                 builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                        snapshot) {
-                  getxController.totalAmount = 0;
+                    AsyncSnapshot<List<UserCartProdutModel>> snapshot) {
                   if (snapshot.hasData) {
+                    getxController.totalAmount = 0;
+                    for (var result in snapshot.data!) {
+                      getxController.totalAmount +=
+                          (result.price * result.quantity);
+                    }
                     return ListView(
                       children: [
                         Row(
@@ -74,12 +74,9 @@ class BuyingOrdersScreen extends StatelessWidget {
                           height: 370.h,
                           child: ListView.separated(
                               itemBuilder: (context, index) {
-                                final data = UserCartProdutModel.fromJson(
-                                    snapshot.data!.docs[index].data());
+                                UserCartProdutModel data =
+                                    snapshot.data![index];
                                 //
-                                getxController.totalAmount =
-                                    getxController.totalAmount +
-                                        (data.price * data.quantity);
 
                                 //
                                 return SizedBox(
@@ -117,7 +114,7 @@ class BuyingOrdersScreen extends StatelessWidget {
                                                       fontSize: 10),
                                                 ),
                                                 Text(
-                                                  '${data.price * data.quantity}',
+                                                  '${data.price}',
                                                   style: const TextStyle(
                                                       color: Colors.blue,
                                                       fontSize: 11),
@@ -126,8 +123,8 @@ class BuyingOrdersScreen extends StatelessWidget {
                                                   width: 50.w,
                                                 ),
                                                 GestureDetector(
-                                                  onTap: () {
-                                                    getxController
+                                                  onTap: () async {
+                                                    await getxController
                                                         .increMentCount(data);
                                                   },
                                                   child: ButtonContainerWidget(
@@ -149,12 +146,13 @@ class BuyingOrdersScreen extends StatelessWidget {
                                                   width: 15,
                                                 ),
                                                 GestureDetector(
-                                                  onTap: () {
+                                                  onTap: () async {
                                                     if (data.quantity > 1) {
-                                                      getxController
+                                                      await getxController
                                                           .decrementCount(data);
                                                     } else {
-                                                      FirebaseFirestore.instance
+                                                      await FirebaseFirestore
+                                                          .instance
                                                           .collection(
                                                               "UserCartModel")
                                                           .doc(data.id)
@@ -196,7 +194,7 @@ class BuyingOrdersScreen extends StatelessWidget {
                                   color: Colors.blue,
                                 );
                               },
-                              itemCount: snapshot.data!.docs.length),
+                              itemCount: snapshot.data?.length ?? 0),
                         ),
                         SizedBox(
                           height: 400,
@@ -249,14 +247,14 @@ class BuyingOrdersScreen extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
+                                children: [
                                   Text(
                                     'Subtotal :',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 11),
                                   ),
                                   Text(
-                                    '61007.9',
+                                    '${getxController.totalAmount} ',
                                     style: TextStyle(
                                         color: Colors.grey, fontSize: 12),
                                   ),
@@ -283,21 +281,6 @@ class BuyingOrdersScreen extends StatelessWidget {
                               SizedBox(
                                 height: 10.h,
                               ),
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      'Discount',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 11),
-                                    ),
-                                    Text(
-                                      '30%',
-                                      style: TextStyle(
-                                          color: Colors.grey, fontSize: 12),
-                                    ),
-                                  ]),
                               SizedBox(
                                 height: 16.h,
                               ),
@@ -329,7 +312,9 @@ class BuyingOrdersScreen extends StatelessWidget {
                                 backgroundColor:
                                     const Color.fromARGB(255, 26, 32, 44),
                                 action: () {
-                                  Get.off(const CheckOutScreen());
+                                  Get.off(CheckOutScreen(
+                                    totalPrice: getxController.totalAmount,
+                                  ));
                                 },
                                 label: const Text(
                                   'Proceed to Checkout',

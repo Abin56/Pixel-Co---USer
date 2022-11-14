@@ -4,10 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:pixels_user/controller/hive/database_hive.dart';
-
 import 'package:pixels_user/controller/phone_otp_Bloc/auth_cubit.dart';
 import 'package:pixels_user/controller/phone_otp_Bloc/auth_state.dart';
 import 'package:pixels_user/view/home/widget/navigation_bar.dart';

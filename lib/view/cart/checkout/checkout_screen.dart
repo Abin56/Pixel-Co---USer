@@ -9,7 +9,8 @@ import 'package:pixels_user/view/widget/newMorphism_black.dart';
 import 'package:slider_button/slider_button.dart';
 
 class CheckOutScreen extends StatelessWidget {
-  const CheckOutScreen({super.key});
+  double totalPrice;
+  CheckOutScreen({required this.totalPrice, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -91,13 +92,13 @@ class CheckOutScreen extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
                         "Subtotal : ",
                         style: TextStyle(color: whitecolor, fontSize: 20),
                       ),
                       Text(
-                        "46635.98",
+                        totalPrice.toString(),
                         style: TextStyle(color: Colors.blue, fontSize: 20),
                       ),
                     ],
@@ -111,7 +112,7 @@ class CheckOutScreen extends StatelessWidget {
                         style: TextStyle(color: whitecolor, fontSize: 20),
                       ),
                       Text(
-                        "0 ",
+                        "Free ",
                         style: TextStyle(color: Colors.blue, fontSize: 20),
                       ),
                     ],
@@ -127,15 +128,15 @@ class CheckOutScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               'Total :',
                               style: TextStyle(
                                   color: Color.fromARGB(255, 165, 157, 157),
                                   fontSize: 17),
                             ),
-                            Text('59988.00',
-                                style: TextStyle(
+                            Text(totalPrice.toString(),
+                                style: const TextStyle(
                                     color: Colors.green, fontSize: 20))
                           ],
                         ),
