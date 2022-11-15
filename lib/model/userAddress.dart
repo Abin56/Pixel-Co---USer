@@ -6,6 +6,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+import 'package:pixels_user/view/cart/buying_Items/buying_items.dart';
+import 'package:pixels_user/view/cart/checkout/checkout_screen.dart';
+
+import '../view/home/widget/navigation_bar.dart';
 
 UserAddressModel UserAddressModelFromJson(String str) =>
     UserAddressModel.fromJson(json.decode(str));
@@ -57,10 +62,11 @@ class UserAddressAddToFireBase {
       final doc = firebase.collection("UserAddressModel").doc();
       productModel.id = doc.id;
 
-      doc.set(productModel.toJson());
-      // .then((value) => Get.to(BuyingOrdersScreen(
-      //       id: doc.id,
-      //     )));
+      doc.set(productModel.toJson()).then((value) => Get.to(
+            NavigationBarContoller(
+              addressid: doc.id,
+            ),
+          ));
     } on FirebaseException catch (e) {
       log('Error ${e.message.toString()}');
     }

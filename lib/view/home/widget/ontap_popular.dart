@@ -42,7 +42,7 @@ class OnTapPopular extends StatelessWidget {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () => Get.offAll(const NavigationBarContoller()),
+                    onTap: () => Get.offAll( NavigationBarContoller()),
                     child: ButtonContainerWidget(
                       colorindex: 0,
                       curving: 6,

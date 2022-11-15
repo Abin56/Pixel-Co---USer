@@ -12,14 +12,23 @@ import '../../core/const.dart';
 import '../../widget/buttonContainer_widget.dart';
 import '../../widget/newMorphism_black.dart';
 
-class ProceedToCheckOut extends StatelessWidget {
-  bool apply = false;
+class ProceedToCheckOut extends StatefulWidget {
+  var addressId;
+
   ProceedToCheckOut({
     Key? key,
+    required this.addressId,
     required this.getxController,
   }) : super(key: key);
 
   final PixelsController getxController;
+
+  @override
+  State<ProceedToCheckOut> createState() => _ProceedToCheckOutState();
+}
+
+class _ProceedToCheckOutState extends State<ProceedToCheckOut> {
+  bool apply = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,15 +62,14 @@ class ProceedToCheckOut extends StatelessWidget {
                     height: 48.h,
                     width: 130.w,
                     child: Center(
-                      child: getxController.totalAmount <= 50000
+                      child: widget.getxController.totalAmount <= 50000
                           ? const Text(
                               'InvalidCoupen!',
                               style: TextStyle(color: Colors.red, fontSize: 12),
                             )
                           : GestureDetector(
                               onTap: () {
-                             
-                                getxController.newCoupenValue();
+                                widget.getxController.newCoupenValue();
                                 log('Appled!!!!!!!!!!!');
                               },
                               child: const Text(
@@ -87,7 +95,7 @@ class ProceedToCheckOut extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 11),
               ),
               Text(
-                '${getxController.totalAmount}',
+                '${widget.getxController.totalAmount}',
                 style: const TextStyle(
                     color: Color.fromARGB(255, 248, 252, 255), fontSize: 13),
               ),
@@ -105,7 +113,7 @@ class ProceedToCheckOut extends StatelessWidget {
               height: 10.h,
             ),
             GetBuilder<PixelsController>(
-              init: getxController,
+              init: widget.getxController,
               initState: (newDiscount) {},
               builder: (newDiscount) {
                 return Text(
@@ -144,7 +152,7 @@ class ProceedToCheckOut extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             GetBuilder<PixelsController>(
-              init: getxController,
+              init: widget.getxController,
               initState: (newData) {},
               builder: (newData) {
                 return Text(
@@ -160,7 +168,7 @@ class ProceedToCheckOut extends StatelessWidget {
             height: 15.h,
           ),
           GetBuilder<PixelsController>(
-            init: getxController,
+            init: widget.getxController,
             initState: (newData) {},
             builder: (newData) {
               return SliderButton(
@@ -169,12 +177,15 @@ class ProceedToCheckOut extends StatelessWidget {
                 baseColor: Colors.blue,
                 backgroundColor: const Color.fromARGB(255, 26, 32, 44),
                 action: () {
+                  setState(() {});
                   newData.newValue == 0
                       ? Get.to(CheckOutScreen(
-                          totalPrice: getxController.totalAmount,
+                          id: widget.addressId,
+                          totalPrice: widget.getxController.totalAmount,
                         ))
                       : Get.to(CheckOutScreen(
-                          totalPrice: getxController.newValue,
+                          id: widget.addressId,
+                          totalPrice: widget.getxController.newValue,
                         ));
                 },
                 label: const Text(

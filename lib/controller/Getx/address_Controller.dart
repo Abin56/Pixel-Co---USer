@@ -7,11 +7,11 @@ class AddressController extends GetxController {
   RxBool isLoading = false.obs;
   List<Map<String, dynamic>> categoryCollections = [];
   Future<List<UserAddressModel>> fetchingAddress() async {
-    List<Map<String, dynamic>> list = [];
+    // List<Map<String, dynamic>> list = [];
     final data =
         await FirebaseFirestore.instance.collection("UserAddressModel").get();
     final d =
-        data.docs.map((e) => UserAddressModel.fromJson(e.data())).toList();
+        data.docs.map((elements) => UserAddressModel.fromJson(elements.data())).toList();
     return d;
   }
 

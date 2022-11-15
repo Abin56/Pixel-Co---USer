@@ -8,12 +8,14 @@ import 'package:pixels_user/model/userCartModel.dart';
 import 'package:pixels_user/view/cart/buying_Items/proceed_Checkout.dart';
 import 'package:pixels_user/view/colors/color.dart';
 import 'package:pixels_user/view/core/const.dart';
+import 'package:pixels_user/view/home/widget/navigation_bar.dart';
 import 'package:pixels_user/view/widget/buttonContainer_widget.dart';
 import 'package:pixels_user/view/widget/newMorphism_black.dart';
 
 class BuyingOrdersScreen extends StatelessWidget {
-  String id;
-  BuyingOrdersScreen({required this.id, super.key});
+  var addressId;
+  var id;
+  BuyingOrdersScreen({this.addressId, this.id, super.key});
 
   final getxController = Get.put(PixelsController());
 
@@ -47,7 +49,7 @@ class BuyingOrdersScreen extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 getxController.newValue = 0;
-                                Get.back();
+                                Get.off(NavigationBarContoller());
                               },
                               child: ButtonContainerWidget(
                                 curving: 8,
@@ -198,7 +200,9 @@ class BuyingOrdersScreen extends StatelessWidget {
                               },
                               itemCount: snapshot.data?.length ?? 0),
                         ),
-                        ProceedToCheckOut(getxController: getxController)
+                        ProceedToCheckOut(
+                            addressId: addressId,
+                            getxController: getxController)
                       ],
                     );
                   } else {

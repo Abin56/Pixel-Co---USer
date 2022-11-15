@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:pixels_user/controller/phone_otp_Bloc/auth_cubit.dart';
 import 'package:pixels_user/controller/phone_otp_Bloc/auth_state.dart';
 import 'package:pixels_user/view/home/widget/navigation_bar.dart';
@@ -20,7 +19,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Hive.initFlutter();
+
   runApp(const MyApp());
 }
 
@@ -61,7 +60,7 @@ class MyApp extends StatelessWidget {
                 },
                 builder: (context, state) {
                   if (state is AuthLoggedInState) {
-                    return const NavigationBarContoller();
+                    return  NavigationBarContoller();
                   } else if (state is AuthLoggedOutState) {
                     return const ScreenLogin();
                   } else {

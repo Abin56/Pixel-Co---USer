@@ -6,7 +6,7 @@ import 'package:pixels_user/model/userCartModel.dart';
 import '../../model/allProdut__mode.dart';
 
 class PixelsController extends GetxController {
-  double checkoutPrice =0;
+  double checkoutPrice = 0;
   double coupenvalue = 5000;
   double newValue = 0;
   double totalAmount = 0;
@@ -57,8 +57,7 @@ class PixelsController extends GetxController {
       value.docs.forEach((element) {
         list.add(element.data());
       });
-    })
-    ;
+    });
     list1 = list;
     log(list.toString());
 
@@ -109,5 +108,4 @@ class PixelsController extends GetxController {
     log(newValue.toString());
     update();
   }
-
 }

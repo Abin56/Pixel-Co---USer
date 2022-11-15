@@ -27,5 +27,5 @@ class SucessFullOTP extends StatelessWidget {
 
 returnScreen(context) async {
   await Future.delayed(const Duration(seconds: 3));
-  Get.off(const NavigationBarContoller());
+  Get.off( NavigationBarContoller());
 }

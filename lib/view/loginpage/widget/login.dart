@@ -95,7 +95,7 @@ class ScreenSignIn extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.offAll(const NavigationBarContoller());
+                    Get.offAll( NavigationBarContoller());
                   },
                   // ignore: sort_child_properties_last
                   child: const Text(

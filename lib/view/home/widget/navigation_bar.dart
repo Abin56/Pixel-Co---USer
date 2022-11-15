@@ -14,7 +14,8 @@ import '../screen_home.dart';
 final getcontroller = Get.put(PixelsController());
 
 class NavigationBarContoller extends StatelessWidget {
-  const NavigationBarContoller({super.key});
+  var addressid;
+   NavigationBarContoller({ this.addressid, super.key});
 
   @override
   Widget build(BuildContext context) {
